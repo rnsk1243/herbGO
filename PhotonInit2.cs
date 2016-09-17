@@ -53,7 +53,7 @@ public class PhotonInit2 : MonoBehaviour {
 	{
 		//m_pv = GameObject.Find("GPSMgr").GetComponent<PhotonView>();
 
-		
+		//
 		//포톤 클라우드에 접속
 		PhotonNetwork.ConnectUsingSettings(version);
 	}
