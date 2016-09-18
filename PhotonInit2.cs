@@ -14,6 +14,12 @@ public class PhotonInit2 : MonoBehaviour {
 
 	//private PhotonView m_pv;
 
+//	public GameObject myLatiTree;
+//	public GameObject myLogiTree;
+
+	public static ArrayList LatiArray = new ArrayList();
+	public static ArrayList LongiArray = new ArrayList();
+/*	
 	public struct ItemPos
 	{
 		// N 위도
@@ -31,8 +37,9 @@ public class PhotonInit2 : MonoBehaviour {
 		{
 			for(int i=0; i< latitude.Length; i++)
 			{
-				latitude[i] = Random.Range(minLatitude, maxLatitude);
-				longitude[i] = Random.Range(minLongitude, maxLongitude);
+				
+				latitude[i] = Mathf.Round(Random.Range(minLatitude, maxLatitude) * 10000) / 10000;
+				longitude[i] = Mathf.Round(Random.Range(minLongitude, maxLongitude) * 10000) / 10000;
 			}
 		}
 
@@ -48,7 +55,7 @@ public class PhotonInit2 : MonoBehaviour {
 	}
 
 	public static ItemPos itemPos;
-
+*/
 	void Awake()
 	{
 		//m_pv = GameObject.Find("GPSMgr").GetComponent<PhotonView>();
@@ -103,15 +110,41 @@ public class PhotonInit2 : MonoBehaviour {
 //			Debug.Log("마스터 입장한 방 이름 = " + PhotonNetwork.room.name);
 //			Debug.Log("마스터 클라이언트 초기화");
 			// 아이템 위치 메모리 할당
-			itemPos  = new ItemPos(10);
+			//itemPos  = new ItemPos(30);
 			// 아이템 위치 초기화
-			itemPos.initPos();
+			//itemPos.initPos();
 
-			for(int i=0; i<10; i++)
+
+
+			// 아이템 위치를 랜덤으로 선정하여 2진 트리에 넣음 
+
+			for(int i=0; i<30; i++)
 			{
-				Debug.Log("Latitude = " + itemPos.getLatitude()[i]);
-				Debug.Log("Longitude = " + itemPos.getLongitude()[i]);
+				//Debug.Log("여기까지는 성공");
+				LatiArray.Add(Mathf.Round(Random.Range(minLatitude,maxLatitude) * 10000) / 10000);
+				LongiArray.Add(Mathf.Round(Random.Range(minLongitude,maxLongitude) * 10000) / 10000);
+
+				/*
+				LatiArray.Add(37.2911f);
+				LongiArray.Add(127.1421f);
+
+				LatiArray.Add(37.2912f);
+				LongiArray.Add(127.1422f);
+
+				LatiArray.Add(37.2913f);
+				LongiArray.Add(127.1423f);
+
+				LatiArray.Add(37.2914f);
+				LongiArray.Add(127.1424f);
+
+				LatiArray.Add(37.2915f);
+				LongiArray.Add(127.1425f);
+
+				LatiArray.Add(37.2916f);
+				LongiArray.Add(127.1426f);
+				*/
 			}
+
 		}
 	}
 
@@ -120,11 +153,12 @@ public class PhotonInit2 : MonoBehaviour {
 	{
 		PhotonNetwork.Instantiate("GPSMgr", new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity, 0);
 	}
-
+/*
 	void OnGUI()
 	{
 		//화면 좌측 상단에 접속 과 정 에 대 한 로 그 를 출 력
 		GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
 	}
+*/
 
 }
